@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twenty One Pilots | 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+            background: radial-gradient(circle at top, #1a0000 0%, #000000 70%);
+            min-height: 100vh;
+        }
+        
+        header {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 2.5rem 0;
+            text-align: center;
+            border-bottom: 1px solid #ff0000;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ff0000, transparent);
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+        
+        .year-badge {
+            display: inline-block;
+            background: #ff0000;
+            color: #000000;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            margin-left: 0.5rem;
+            vertical-align: super;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            color: #ff6666;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .nav-button {
+            background: #ff0000;
+            color: #000000;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid #ff0000;
+            text-align: center;
+            min-width: 200px;
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .intro p {
+            color: #cccccc;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .albums-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .album-card {
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid #333;
+            backdrop-filter: blur(5px);
+            position: relative;
+        }
+        
+        .album-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 0, 0, 0.2);
+            border-color: #ff0000;
+        }
+        
+        .album-cover {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-bottom: 1px solid #333;
+            transition: all 0.3s ease;
+        }
+        
+        .album-card:hover .album-cover {
+            filter: brightness(1.1);
+        }
+        
+        .album-info {
+            padding: 1.5rem;
+        }
+        
+        .album-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+            font-weight: 600;
+        }
+        
+        .album-year {
+            color: #ff6666;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+        
+        .album-desc {
+            color: #aaaaaa;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .album-page {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2.5rem;
+            background: rgba(20, 20, 20, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            margin-top: 2rem;
+            border: 1px solid #333;
+            backdrop-filter: blur(10px);
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            background-color: #ff0000;
+            color: #000000;
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .back-button:hover {
+            background-color: #cc0000;
+            transform: translateX(-5px);
+        }
+        
+        .album-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            gap: 2rem;
+        }
+        
+        .album-page-cover {
+            width: 220px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid #ff0000;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+            flex-shrink: 0;
+        }
+        
+        .album-page-info h2 {
+            font-size: 2.8rem;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+        
+        .album-page-info p {
+            color: #cccccc;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .songs-section h3 {
+            font-size: 1.8rem;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #333;
+        }
+        
+        .songs-list {
+            list-style-type: none;
+        }
+        
+        .song-item {
+            padding: 1.2rem;
+            border-bottom: 1px solid #222;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s ease;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .song-item:hover {
+            background-color: rgba(255, 0, 0, 0.1);
+        }
+        
+        .song-number {
+            color: #ff0000;
+            font-weight: bold;
+            margin-right: 1.5rem;
+            min-width: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .song-title {
+            flex-grow: 1;
+            color: #ffffff;
+            font-size: 1.1rem;
+        }
+        
+        .song-duration {
+            color: #ff6666;
+            font-size: 1rem;
+         }
+        
+        .spotify-link {
+            color: #1DB954;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            padding: 0.3rem 0.5rem;
+            border-radius: 4px;
+        }
+        
+        .spotify-link:hover {
+            background-color: rgba(29, 185, 84, 0.2);
+            transform: scale(1.1);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 3rem;
+            margin-top: 4rem;
+            color: #666666;
+            border-top: 1px solid #222;
+            background: rgba(0, 0, 0, 0.8);
+        }
+        
+        .new-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #ff0000;
+            color: #000000;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 10;
+        }
+        
+        .tour-info {
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid #ff0000;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .tour-info h3 {
+            color: #ff0000;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .highlight {
+            border: 2px solid #ff0000;
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
+        }
+        
+        .spotify-notice {
+            background: rgba(29, 185, 84, 0.1);
+            border: 1px solid #1DB954;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #cccccc;
+        }
+        
+        @media (max-width: 768px) {
+            .album-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .album-page-cover {
+                margin-right: 0;
+                margin-bottom: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .album-page-info h2 {
+                font-size: 2.2rem;
+            }
+        
+            
+            .song-item {
+                flex-wrap: wrap;
+            }
+            
+            .spotify-link {
+                margin-top: 0.5rem;
+                margin-left: 2rem;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-button {
+                width: 100%;
+                max-width: 300px;
+
+     }     
+    </style>
+</head>
+<body>
+    <header>
+            <h1>TWENTY ONE PILOTS <span class="year-badge">2025</span></h1>
+            <p class="subtitle">La evolución continua - Discografía completa</p>
+    </header>
+    
+    <div class="container">
+        
+        <div class="nav-buttons"></div>
+         <a href="Index.html" class="nav-button">inicio</a>
+    </div>
+        <div class="intro">
+            <p>Explora la discografía completa de Twenty One Pilots, desde sus inicios hasta su más reciente álbum <strong>Breach</strong> lanzado en 2025. Haz clic en cualquier álbum para descubrir su lista de canciones completa.</p>
+        </div>
+        
+        <div id="albums-container" class="albums-grid">
+            <!-- Los álbumes se cargarán aquí con JavaScript -->
+        </div>
+        
+        <div id="album-detail" class="album-page" style="display: none;">
+            <!-- Detalles del álbum se cargarán aquí con JavaScript -->
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>© 2025 Twenty One Pilots - Sitio fan no oficial. Todos los derechos reservados a los artistas y discográficas.</p>
+            <p>Autor: Antonio</p>
+        </div>
+    </footer>
+
+    <script>
+        // Datos de los álbumes y canciones actualizados para 2025
+        const albums = [
+            {
+                id: 1,
+                title: "Breach",
+                year: 2025,
+                cover: "https://www.portalpopcyber.com/wp-content/uploads/2025/05/Twenty-One-Pilots-anuncia-novo-album-22Breach22--e1747848321620.jpg",
+                description: "Breach es el octavo álbum de larga duración y séptimo álbum de estudio del dúo estadounidense Twenty One Pilots. Fue lanzado el 12 de septiembre de 2025 a través de Fueled by Ramen. Es la continuación del anterior álbum de estudio del dúo Clancy (2024), y pretende concluir una serie conceptual que también incluye Blurryface (2015), Trench (2018) y Scaled and Icy (2021).",
+                songs: [
+                    { title: "City Walls", duration: "5:22" },
+                    { title: "Rawfear", duration: "3:22" },
+                    { title: "Drum Show", duration: "3:23" },
+                    { title: "Garbage", duration: "3:16" },
+                    { title: "The Contract", duration: "3:45" },
+                    { title: "Downstairs", duration: "5:26" },
+                    { title: "Robot Voices", duration: "3:57" },
+                    { title: "Center Mass", duration: "3:48" },
+                    { title: "Cottonwood", duration: "3:08" },
+                    { title: "One Way", duration: "2:43" },
+                    { title: "Days Lie Dormant", duration: "3:26" },
+                    { title: "Tally", duration: "3:32" },
+                    { title: "Intentions", duration: "2:15" }
+                ],
+                isNew: true
+            },
+            {
+                id: 2,
+                title: "Clancy",
+                year: 2024,
+                cover: "https://tse2.mm.bing.net/th/id/OIP.XVl1r42jd60igi3kMYPNlQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
+                description: "Clancy es el séptimo álbum de larga duración y quinto álbum de estudio del dúo estadounidense Twenty One Pilots, publicado el 24 de mayo de 2024 a través de Fueled by Ramen. Sirvió como prólogo al «capítulo final» de la serie de álbumes conceptuales.",
+                songs: [
+                    { title: "Overcompensate", duration: "4:33" },
+                    { title: "Next Semester", duration: "3:52" },
+                    { title: "Backslide", duration: "3:28" },
+                    { title: "Midwest Indigo", duration: "4:37" },
+                    { title: "Routines in the Night", duration: "3:46" },
+                    { title: "Vignette", duration: "3:43" },
+                    { title: "The Craving (Jenna's Version)", duration: "3:51" },
+                    { title: "Lavish", duration: "3:49" },
+                    { title: "Navigating", duration: "4:18" },
+                    { title: "Snap Back", duration: "3:28" },
+                    { title: "Oldies Station", duration: "3:57" },
+                    { title: "At the Risk of Feeling Dumb", duration: "3:42" },
+                    { title: "Paladin Strait", duration: "4:16" }
+                ]
+            },
+            {
+                id: 3,
+                title: "Scaled and Icy",
+                year: 2021,
+                cover: "https://tse1.mm.bing.net/th/id/OIP.iqko2rog0JKLwKow-EH0ZQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
+                description: "Scaled And Icy es el sexto álbum de larga duración y cuarto álbum de estudio del dúo estadounidense Twenty One Pilots publicado el 21 de mayo de 2021 a través de Fueled by Ramen y Elektra.",
+                songs: [
+                    { title: "Good Day", duration: "3:24" },
+                    { title: "Choker", duration: "3:43" },
+                    { title: "Shy Away", duration: "2:55" },
+                    { title: "The Outside", duration: "3:36" },
+                    { title: "Saturday", duration: "2:52" },
+                    { title: "Never Take It", duration: "3:32" },
+                    { title: "Mulberry Street", duration: "3:44" },
+                    { title: "Formidable", duration: "2:56" },
+                    { title: "Bounce Man", duration: "3:05" },
+                    { title: "No Chances", duration: "3:46" },
+                    { title: "Redecorate", duration: "4:05" }
+                ]
+            },
+            {
+                id: 4,
+                title: "Trench",
+                year: 2018,
+                cover: "https://images-na.ssl-images-amazon.com/images/I/81ucF7MxoeL._SL1441_.jpg",
+                description: "Trench (estilizado como TRENCH) es el quinto álbum del dúo estadounidense Twenty One Pilots y el tercero como dúo. El álbum fue lanzado el 5 de octubre de 2018.",
+                songs: [
+                    { title: "Jumpsuit", duration: "3:58" },
+                    { title: "Levitate", duration: "2:25" },
+                    { title: "Morph", duration: "4:19" },
+                    { title: "My Blood", duration: "3:49" },
+                    { title: "Chlorine", duration: "5:24" },
+                    { title: "Smithereens", duration: "2:57" },
+                    { title: "Neon Gravestones", duration: "4:00" },
+                    { title: "The Hype", duration: "4:26" },
+                    { title: "Nico and the Niners", duration: "3:47" },
+                 ]
+            },
+            {
+                
+                id: 5,
+                title: "Blurryface",
+                year: 2015,
+                cover: "https://th.bing.com/th/id/R.dd03d48a565c2bf4dec0c1c3ae05cb41?rik=8uUWnArnVRxY0g&riu=http%3a%2f%2fvignette3.wikia.nocookie.net%2ftwenty-one-pilots%2fimages%2f5%2f58%2fBlurryface.jpg%2frevision%2flatest%3fcb%3d20160105182338&ehk=%2fre79bgpephEi7jbP4cA959DT8LFMsH8zysrQEQyxgU%3d&risl=&pid=ImgRaw&r=0",   
+                description: "Blurryface (estilizado como BLURRYFACE, a veces como BLVRRYFΛCE), es el cuarto álbum de larga duración y segundo álbum de estudio del dúo musical estadounidense Twenty One Pilots, lanzado el 17 de mayo de 2015, a través de Fueled by Ramen.",
+                songs: [
+                    { title: "Heavydirtysoul", duration: "3:55" },
+                    { title: "Stressed Out", duration: "3:22" },
+                    { title: "Ride", duration: "3:34" },
+                    { title: "Fairly Local", duration: "3:27" },
+                    { title: "Tear in My Heart", duration: "3:08" },
+                    { title: "Lane Boy", duration: "4:13" },
+                    { title: "The Judge", duration: "4:57" },
+                    { title: "Doubt", duration: "3:11" },
+                    { title: "Polarize", duration: "3:46" },
+                    { title: "We Don't Believe What's on TV", duration: "2:57" },
+                    { title: "Message Man", duration: "4:00" },
+                    { title: "Hometown", duration: "3:54" },
+                    { title: "Not Today", duration: "3:58" },
+                    { title: "Goner", duration: "3:56" }
+                ]
+            },
+            {
+                id: 6,
+                title: "Vessel",
+                year: 2013,
+                cover: "https://tse1.mm.bing.net/th/id/OIP.nYMjp462OE4XAvd36QsB_QHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
+                description: "Vessel es el tercer álbum del grupo estadounidense Twenty One Pilots, lanzado el 8 de enero del 2013. Es el primer álbum de estudio de la banda grabado con Fueled By Ramen, después de lanzar dos álbumes independientes, Twenty One Pilots (2009), y Regional At Best (2011). Al igual que este último, Vessel tiene influencias del indie pop, el electropop y el rap, y cuenta con un contenido lírico de enfermedad mental, depresión, y suicidio; pero también religión. Sin embargo, no cambió mucho respecto a su predecesor, Regional At Best, ya que fue una remasterización con mejor calidad con algunas nuevas canciones y dejando las anteriores como bonus track.",
+                songs: [
+                    { title: "Ode to Sleep", duration: "5:08" },
+                    { title: "Holding on to You", duration: "4:23" },
+                    { title: "Migraine", duration: "3:59" },
+                    { title: "House of Gold", duration: "2:43" },
+                    { title: "Car Radio", duration: "4:27" },
+                    { title: "Semi-Automatic", duration: "4:14" },
+                    { title: "Screen", duration: "3:49" },
+                    { title: "The Run and Go", duration: "3:49" },
+                    { title: "Fake You Out", duration: "3:51" },
+                    { title: "Guns for Hands", duration: "4:32" },
+                    { title: "Trees", duration: "4:27" },
+                    { title: "Truce", duration: "2:22" }
+                ]
+            },
+            {
+                id: 7,
+                title: "Regional at Best",
+                year: 2011,
+                cover: "https://tse4.mm.bing.net/th/id/OIP.tJTa7tw7C25mxqB6Fy9zBAHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
+                description: "Regional at Best (abreviado como RAB), es el segundo álbum lanzado de forma independiente por el grupo musical estadounidense Twenty One Pilots, publicado el 8 de julio de 2011. El álbum cambió de estilo musical respecto al primero, este teniendo elementos del indietronica, indie rock, electrónica y hip hop.",
+                songs: [
+                    { title: "Guns for Hands", duration: "4:33" },
+                    { title: "Holding on to You", duration: "4:24" },
+                    { title: "Ode to Sleep", duration: "5:09" },
+                    { title: "Slowtown", duration: "4:13" },
+                    { title: "Car Radio", duration: "4:38" },
+                    { title: "Forest", duration: "4:06" },
+                    { title: "Glowing Eyes", duration: "4:26" },
+                    { title: "Kitchen Sink", duration: "5:30" },
+                    { title: "Anathema", duration: "3:58" },
+                    { title: "Lovely", duration: "4:18" },
+                    { title: "Ruby", duration: "4:27" },
+                    { title: "Trees", duration: "4:27" },
+                    { title: "Be Concerned", duration: "3:21" },
+                    { title: "Clear", duration: "3:47" }
+                ]
+            },
+            {
+                id: 8,
+                title: "Twenty One Pilots",
+                year: 2009,
+                cover: "https://th.bing.com/th/id/R.68c47b17f86c36911a9387fd75110e44?rik=vuGdooFamPiyHA&riu=http%3a%2f%2fvignette1.wikia.nocookie.net%2ftwenty-one-pilots%2fimages%2f1%2f1a%2fTwenty_One_Pilots_album.png%2frevision%2flatest%3fcb%3d20160427085922&ehk=uSmlXnXXwxu8VtlXzuORQtMZIx0LR%2b%2fUpi24ZBGVp4Y%3d&risl=&pid=ImgRaw&r=0",
+                description: "Twenty One Pilots es el álbum debut homónimo de la banda estadounidense Twenty One Pilots, lanzado de forma independiente el 29 de diciembre de 2009. El álbum vendió 115,000 copias y alcanzó el número 139 en los EE. UU. Billboard 200. Es el único álbum que presenta el bajista Nick Thomas y el baterista Chris Salih antes de que ambos dejaran la banda en 2011.",
+                songs: [
+                    { title: "Implicit Demand for Proof", duration: "4:52" },
+                    { title: "Fall Away", duration: "3:02" },
+                    { title: "The Pantaloon", duration: "3:34" },
+                    { title: "Addict with a Pen", duration: "4:48" },
+                    { title: "Friend, Please", duration: "4:13" },
+                    { title: "March to the Sea", duration: "5:32" },
+                    { title: "Johnny Boy", duration: "4:39" },
+                    { title: "Oh, Ms. Believer", duration: "3:49" },
+                    { title: "Air Catcher", duration: "4:13" },
+                    { title: "Trapdoor", duration: "4:37" },
+                    { title: "A Car, a Torch, a Death", duration: "4:34" },
+                    { title: "Taxi Cab", duration: "4:46" },
+                    { title: "Before You Start Your Day", duration: "3:53" },
+                    { title: "Isle of Flightless Birds", duration: "5:46" }
+                ]
+            }
+        ];
+
+        // Elementos del DOM
+        const albumsContainer = document.getElementById('albums-container');
+        const albumDetail = document.getElementById('album-detail');
+
+        // Función para generar enlace de búsqueda en Spotify
+        function getSpotifyLink(songTitle, albumTitle) {
+            const searchQuery = encodeURIComponent(`${songTitle} ${albumTitle} Twenty One Pilots`);
+            return `https://open.spotify.com/search/${searchQuery}`;
+        }
+
+        // Función para mostrar todos los álbumes
+        function displayAlbums() {
+            albumsContainer.innerHTML = '';
+            albumsContainer.style.display = 'grid';
+            albumDetail.style.display = 'none';
+            
+            albums.forEach(album => {
+                const albumCard = document.createElement('div');
+                albumCard.className = 'album-card';
+                
+                // Añadir clase highlight y badge para el álbum de 2025
+                if (album.year === 2025) {
+                    albumCard.classList.add('highlight');
+                }
+                
+                const badge = album.isNew ? '<div class="new-badge">NUEVO 2025</div>' : '';
+                
+                albumCard.innerHTML = `
+                    ${badge}
+                    <img src="${album.cover}" alt="${album.title}" class="album-cover">
+                    <div class="album-info">
+                        <h3 class="album-title">${album.title}</h3>
+                        <p class="album-year">${album.year}</p>
+                        <p class="album-desc">${album.description}</p>
+                    </div>
+                `;
+                
+                albumCard.addEventListener('click', () => {
+                    displayAlbumDetail(album.id);
+                });
+                
+                albumsContainer.appendChild(albumCard);
+            });
+        }
+
+        // Función para mostrar el detalle de un álbum
+        function displayAlbumDetail(albumId) {
+            const album = albums.find(a => a.id === albumId);
+            
+            if (!album) return;
+            
+            albumsContainer.style.display = 'none';
+            albumDetail.style.display = 'block';
+            
+            albumDetail.innerHTML = `
+                <button class="back-button" id="back-button">← Volver a los álbumes</button>
+                <div class="album-header">
+                    <img src="${album.cover}" alt="${album.title}" class="album-page-cover">
+                    <div class="album-page-info">
+                        <h2>${album.title}</h2>
+                        <p><strong>Año de lanzamiento:</strong> ${album.year}</p>
+                        <p>${album.description}</p>
+                    </div>
+                </div>
+                <div class="spotify-notice">
+                    ♪ Haz clic en el ícono de Spotify junto a cada canción para escucharla en Spotify ♪
+                </div>
+                <div class="songs-section">
+                    <h3>Lista de canciones</h3>
+                    <ul class="songs-list">
+                        ${album.songs.map((song, index) => `
+                            <li class="song-item">
+                                <span class="song-number">${index + 1}</span>
+                                <span class="song-title">${song.title}</span>
+                                <span class="song-duration">${song.duration}</span>
+                                <a href="${getSpotifyLink(song.title, album.title)}" target="_blank" class="spotify-link" title="Escuchar en Spotify">
+                                    ♪
+                                </a>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+            `;
+            
+            document.getElementById('back-button').addEventListener('click', (e) => {
+                e.preventDefault();
+                displayAlbums();
+            });
+        }
+
+        // Inicializar la página mostrando todos los álbumes
+        displayAlbums();
+    </script>
+</body>
+</html>
